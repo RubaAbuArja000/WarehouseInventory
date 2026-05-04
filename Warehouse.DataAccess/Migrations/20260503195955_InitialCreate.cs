@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -94,15 +94,9 @@ namespace Warehouse.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Email",
-                table: "Users",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Warehouses_Name",
-                table: "Warehouses",
-                column: "Name",
+                name: "IX_Items_Name_WarehouseId",
+                table: "Items",
+                columns: new[] { "Name", "WarehouseId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -111,24 +105,37 @@ namespace Warehouse.DataAccess.Migrations
                 column: "WarehouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_Name_WarehouseId",
-                table: "Items",
-                columns: new[] { "Name", "WarehouseId" },
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_WarehouseItems_WarehouseId",
                 table: "WarehouseItems",
                 column: "WarehouseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Warehouses_Name",
+                table: "Warehouses",
+                column: "Name",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "WarehouseItems");
-            migrationBuilder.DropTable(name: "Items");
-            migrationBuilder.DropTable(name: "Warehouses");
-            migrationBuilder.DropTable(name: "Users");
+            migrationBuilder.DropTable(
+                name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "WarehouseItems");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
         }
     }
 }
