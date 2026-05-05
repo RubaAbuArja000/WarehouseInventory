@@ -29,4 +29,25 @@ public class DashboardController(IDashboardService _dashboardService, IWarehouse
         var result = await _dashboardService.GetTopLowItemsAsync();
         return Ok(result);
     }
+
+    [HttpGet("top-selling-items")]
+    public async Task<IActionResult> GetTopSellingItems()
+    {
+        var result = await _dashboardService.GetTopSellingItemsAsync();
+        return Ok(result);
+    }
+
+    [HttpGet("low-stock-items")]
+    public async Task<IActionResult> GetLowStockItems()
+    {
+        var result = await _dashboardService.GetLowStockItemsAsync();
+        return Ok(result);
+    }
+
+    [HttpGet("out-of-stock-items")]
+    public async Task<IActionResult> GetOutOfStockItems()
+    {
+        var result = await _dashboardService.GetOutOfStockItemsAsync();
+        return Ok(result);
+    }
 }

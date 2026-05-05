@@ -12,4 +12,7 @@ public interface IWarehouseItemRepository
     Task DeleteAsync(WarehouseItem item);
     Task<IEnumerable<WarehouseItemDto>> GetTopHighItemsAsync(int count);
     Task<IEnumerable<WarehouseItemDto>> GetTopLowItemsAsync(int count);
+    Task<IEnumerable<WarehouseItemDto>> GetTopSellingItemsAsync(int count);
+    Task<IEnumerable<WarehouseItemDto>> GetLowStockItemsAsync(int count);
+    Task<IEnumerable<WarehouseItemDto>> GetOutOfStockItemsAsync(int count);
 }

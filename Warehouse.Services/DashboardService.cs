@@ -26,4 +26,37 @@ public class DashboardService(IWarehouseItemRepository _itemRepo, IWarehouseRepo
         var items = await _itemRepo.GetTopLowItemsAsync(count);
         return items.Select(i => new ItemDto { Id = i.Id, Name = i.ItemName, Quantity = i.Quantity });
     }
+    public async Task<IEnumerable<ItemDto>> GetTopSellingItemsAsync(int count = 10)
+    {
+        var items = await _itemRepo.GetTopSellingItemsAsync(count);
+
+        return items.Select(i => new ItemDto
+        {
+            Id = i.Id,
+            Name = i.ItemName,
+            Quantity = i.Quantity
+        });
+    }
+    public async Task<IEnumerable<ItemDto>> GetLowStockItemsAsync(int count = 10)
+    {
+        var items = await _itemRepo.GetLowStockItemsAsync(count);
+
+        return items.Select(i => new ItemDto
+        {
+            Id = i.Id,
+            Name = i.ItemName,
+            Quantity = i.Quantity
+        });
+    }
+    public async Task<IEnumerable<ItemDto>> GetOutOfStockItemsAsync(int count = 10)
+    {
+        var items = await _itemRepo.GetOutOfStockItemsAsync(count);
+
+        return items.Select(i => new ItemDto
+        {
+            Id = i.Id,
+            Name = i.ItemName,
+            Quantity = i.Quantity
+        });
+    }
 }

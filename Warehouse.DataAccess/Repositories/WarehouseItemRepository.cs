@@ -80,4 +80,56 @@ public class WarehouseItemRepository(DatabaseContext _context) : IWarehouseItemR
             })
             .ToListAsync();
     }
+    public async Task<IEnumerable<WarehouseItemDto>> GetTopSellingItemsAsync(int count)
+    {
+        return await _context.WarehouseItems
+            .OrderByDescending(i => i.Qty)
+            .Take(count)
+            .Select(i => new WarehouseItemDto
+            {
+                Id = i.Id,
+                ItemName = i.ItemName,
+                SkuCode = i.SkuCode,
+                Quantity = i.Qty,
+                CostPrice = i.CostPrice,
+                MsrpPrice = i.MsrpPrice,
+                WarehouseId = i.WarehouseId
+            })
+            .ToListAsync();
+    }
+    public async Task<IEnumerable<WarehouseItemDto>> GetLowStockItemsAsync(int count)
+    {
+        return await _context.WarehouseItems
+            .Where(i => i.Qty > 0 && i.Qty < 10)
+            .OrderBy(i => i.Qty)
+            .Take(count)
+            .Select(i => new WarehouseItemDto
+            {
+                Id = i.Id,
+                ItemName = i.ItemName,
+                SkuCode = i.SkuCode,
+                Quantity = i.Qty,
+                CostPrice = i.CostPrice,
+                MsrpPrice = i.MsrpPrice,
+                WarehouseId = i.WarehouseId
+            })
+            .ToListAsync();
+    }
+    public async Task<IEnumerable<WarehouseItemDto>> GetOutOfStockItemsAsync(int count)
+    {
+        return await _context.WarehouseItems
+            .Where(i => i.Qty == 0)
+            .Take(count)
+            .Select(i => new WarehouseItemDto
+            {
+                Id = i.Id,
+                ItemName = i.ItemName,
+                SkuCode = i.SkuCode,
+                Quantity = i.Qty,
+                CostPrice = i.CostPrice,
+                MsrpPrice = i.MsrpPrice,
+                WarehouseId = i.WarehouseId
+            })
+            .ToListAsync();
+    }
 }
