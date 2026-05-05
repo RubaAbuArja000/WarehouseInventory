@@ -1,3 +1,8 @@
 <Solution>
+  <Project Path="Warehouse.Core/Warehouse.Core.csproj" />
+  <Project Path="Warehouse.DataAccess/Warehouse.DataAccess.csproj" />
+  <Project Path="Warehouse.Services/Warehouse.Services.csproj" Id="cb8cbcb8-bde9-447e-8f47-84c2b26f3329" />
+  <Project Path="Warehouse.Shared/Warehouse.Shared.csproj" />
+  <Project Path="WarehouseApplication/Warehouse.Application.csproj" />
   <Project Path="WarehouseInventory/WarehouseInventory.csproj" />
 </Solution>
